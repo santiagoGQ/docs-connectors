@@ -283,6 +283,7 @@ Writer options let you specify the separator characters used when writing messag
 * The starting transaction set control number (used only when no current value is found in the object store).
 * Whether to request interchange acknowledgments (ISA14).
 * The default interchange usage indicator (ISA15), used when no value is present in the message data.
+* Whether to use supplied values for header fields (instead of generating control numbers and timestamps for headers).
 
 == Example: X12 Studio
 
@@ -415,6 +416,7 @@ Writer parameters control the writer operation (all are optional, with default v
 |initialSetNumber="1" |The initial Transaction Set Control Number used for outgoing messages.
 |ackRequested="false" |Request acknowledgments for sent transactions flag. If true, 997/999 acknowledgments are requested for all sent transactions.
 |defaultUsageIndicator="P" |Default ISA15 interchange usage indicator ("I" for Information, "P" for Production Data, "T" for Test Data).
+|useSuppliedValues="false" |Use supplied values for header fields. If true, control numbers and timestamp values present in the supplied data will be used (instead of generating these values for headers).
 |===
 
 == To Set Your Schema Locations
