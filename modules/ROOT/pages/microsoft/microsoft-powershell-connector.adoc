@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-_Select_
+Support Category: Select
 
 The PowerShell connector enables Windows administration tasks to be integrated into Mule applications. PowerShell scripts can be executed on a remote Windows or Linux(Ubuntu) machine using SSH and the result processed within Mule.
 PowerShell connector enables you to connect to any machine locally or remotely to execute script files and commands on local or remote machine.
