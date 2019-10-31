@@ -37,20 +37,19 @@ See xref:release-notes::connector/microsoft-dynamics-365-connector-release-notes
 
 ==== Connection Types
 
-[[dynamics-config_connection]]
 ===== OAuth 2
 
 Use OAuth 2.0 with the `openid scope`. Scope is a mechanism in OAuth 2.0 to limit an application's access to a user's account. An application can request one or more scopes, this information is then presented to the user in the consent screen, and the access token issued to the application will be limited to the scopes granted.
 
 ====== Parameters
 
-[%header%autowidth.spread]
+[%header,cols="20s,20a,35a,20a,5a"]
 |===
 | Name | Type | Description | Default Value | Required
 | Version a| String |  +++The version number of the API to connect to.+++ |  +++9.0+++ | 
-| Scope a| String |  |  +++openid+++ | 
-| Resource a| String |  |  | x
-| Response Type a| String |  |  +++query+++ | 
+| Scope a| String | `openid` is required for authentication requests. |  +++openid+++ | 
+| Resource a| String | The resource URI or server. |  | x
+| Response Type a| String | Any combination of `code`, `token`, and `id_token`. The combination determines the flow.  |  +++query+++ | 
 | Read Timeout a| Number |  +++Specifies the amount of time in milliseconds that the consumer waits for a response before it times out. Default value is 0, which means infinite.+++ |  +++0+++ | 
 | Connection Timeout a| Number |  +++Specifies the amount of time, in milliseconds, that the consumer will attempt to establish a connection before it times out. Default value is 0, which means infinite.+++ |  +++0+++ | 
 | Host a| String |  +++Hostname of the proxy. If this property is not set, then a proxy is not used. Otherwise a proxy is used, but a proxy host must be specified.+++ |  | 
@@ -61,8 +60,8 @@ Use OAuth 2.0 with the `openid scope`. Scope is a mechanism in OAuth 2.0 to limi
 | Pooling Profile a| <<PoolingProfile>> |  +++Characteristics of the connection pool+++ |  | 
 | Consumer Key a| String |  +++The OAuth consumerKey as registered with the service provider+++ |  | x
 | Consumer Secret a| String |  +++The OAuth consumerSecret as registered with the service provider+++ |  | x
-| Authorization Url a| String |  +++The service provider's authorization endpoint URL+++ |  `+https://login.microsoftonline.com/oauth2/authorize+` | 
-| Access Token Url a| String |  +++The service provider's accessToken endpoint URL+++ |  `+https://login.microsoftonline.com/oauth2/token+` | 
+| Authorization Url a| String |  +++The service provider's authorization endpoint URL+++ | `+https://login.microsoftonline.com/oauth2/authorize+` | 
+| Access Token Url a| String |  +++The service provider's accessToken endpoint URL+++ | `+https://login.microsoftonline.com/oauth2/token+` | 
 | Scopes a| String |  +++The OAuth scopes to be requested during the dance. If not provided, it will default to those in the annotation+++ |  | 
 | Resource Owner Id a| String |  +++The resourceOwnerId which each component should use if it doesn't reference otherwise.+++ |  | 
 | Before a| String |  +++The name of a flow to be execute right before starting the OAuth dance.+++ |  | 
@@ -74,10 +73,10 @@ Use OAuth 2.0 with the `openid scope`. Scope is a mechanism in OAuth 2.0 to limi
 | Object Store a| String |  +++A reference to the object store to use to store each resource owner ID's data. If not specified, the runtime automatically provisions the default object store.+++ |  | 
 |===
 
-[[dynamics-config_oauth-user-pass]]
 ===== OAuth Username Password
 
 Use the username-password authentication flow to authenticate when the consumer already has the user’s credentials.
+
 In this flow, the user’s credentials are used by the application to request an access token.
 
 ====== Parameters
