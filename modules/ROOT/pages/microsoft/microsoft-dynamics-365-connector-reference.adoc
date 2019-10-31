@@ -9,11 +9,19 @@ Microsoft Dynamics 365 Connector v2.3.1
 
 See xref:release-notes::connector/microsoft-dynamics-365-connector-release-notes-mule-4.adoc[Microsoft Dynamics 365 Connector Release Notes] for compatibility information.
 
+=== Compatibility
+
+[%header%autowidth.spread]
+|===
+|Software |Version
+|Mule Runtime | Mule Runtime Enterprise Edition 4.1.1 and later
+|Microsoft Dynamics 365 | 10.0 and later
+|===
+
 == Configurations
 ---
 [[dynamics-config]]
 === Dynamics 365
-
 
 ==== Parameters
 
@@ -21,7 +29,7 @@ See xref:release-notes::connector/microsoft-dynamics-365-connector-release-notes
 |===
 | Name | Type | Description | Default Value | Required
 |Name | String | The name for this configuration. Connectors reference the configuration with this name. | | x
-| Connection a| * <<dynamics-config_connection, Connection>> 
+| Connection a| * <<dynamics-config_connection, OAuth 2.0 openid scope>> 
 * <<dynamics-config_oauth-user-pass, OAuth Username Password>> 
  | The connection types that can be provided to this configuration. | | x
 | Expiration Policy a| <<ExpirationPolicy>> |  +++Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform expires the instance at the exact moment that it becomes eligible. The runtime purges the instances when it sees fit.+++ |  | 
@@ -30,8 +38,9 @@ See xref:release-notes::connector/microsoft-dynamics-365-connector-release-notes
 ==== Connection Types
 
 [[dynamics-config_connection]]
-===== Connection
+===== OAuth 2
 
+Use OAuth 2.0 with the `openid scope`. Scope is a mechanism in OAuth 2.0 to limit an application's access to a user's account. An application can request one or more scopes, this information is then presented to the user in the consent screen, and the access token issued to the application will be limited to the scopes granted.
 
 ====== Parameters
 
@@ -68,6 +77,8 @@ See xref:release-notes::connector/microsoft-dynamics-365-connector-release-notes
 [[dynamics-config_oauth-user-pass]]
 ===== OAuth Username Password
 
+Use the username-password authentication flow to authenticate when the consumer already has the user’s credentials.
+In this flow, the user’s credentials are used by the application to request an access token.
 
 ====== Parameters
 
@@ -133,7 +144,7 @@ Creates a new Entity:
 |===
 | Name | Type | Description | Default Value | Required
 | Configuration | String | The name of the configuration to use. | | x
-| Logical Name a| String |  +++The logical name of the entity. It is always the Schema Name in lower case.+++ |  | x
+| Logical Name a| String |  +++Entities have two names: The logical name and the Schema Name. Enter the schema name, in lowercase. The schema name is used to create database table columns. To find the entity’s Schema Name, go to the entities list. For example: `new_movie`. +++ |  | x
 | Attributes a| Object |  +++The attributes of the entity to be created as a Map.+++ |  `#[payload]` | 
 | Target Variable a| String |  +++The name of a variable to store the operation's output.+++ |  | 
 | Target Value a| String |  +++An expression to evaluate against the operation's output and store the expression outcome in the target variable+++ |  `#[payload]` | 
