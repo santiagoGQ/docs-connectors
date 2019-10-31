@@ -43,7 +43,7 @@ Use OAuth 2.0 with the `openid scope`. Scope is a mechanism in OAuth 2.0 to limi
 
 ====== Parameters
 
-[%header,cols="20s,20a,35a,20a,5a"]
+[%header%autowidth.spread]
 |===
 | Name | Type | Description | Default Value | Required
 | Version a| String |  +++The version number of the API to connect to.+++ |  +++9.0+++ | 
